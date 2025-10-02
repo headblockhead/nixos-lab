@@ -43,8 +43,9 @@
         allowUnfree = true;
       };
 
-      # An array of every system folder in ./systems.
-      systemNames = builtins.attrNames (inputs.nixpkgs.lib.filterAttrs (path: type: type == "directory") (builtins.readDir ./systems));
+      systemNames = [
+        "dell-client-01"
+      ];
 
       # An array of all the NixOS modules in ./modules/nixos.
       nixosModuleNames = map (name: inputs.nixpkgs.lib.removeSuffix ".nix" name) (builtins.attrNames (builtins.readDir ./modules/nixos));
