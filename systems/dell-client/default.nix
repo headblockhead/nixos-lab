@@ -23,19 +23,7 @@ in
 
       basicConfig
       bootloader
-      desktop
-      desktopApps
-      development
-      fileSystems
-      fonts
-      git
-      gpg
-      network
-      sound
-      ssd
-      ssh
-      users
-      zsh
+      activeDirectory
     ];
   };
   inherit system;

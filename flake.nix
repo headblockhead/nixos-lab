@@ -13,7 +13,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    headblockhead-nixos.url = "github:headblockhead/nixos";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, headblockhead-nixos, ... }@inputs:
@@ -47,10 +46,10 @@
         "dell-client-01"
       ];
 
-      # An array of all the NixOS modules in ./modules/nixos.
-      nixosModuleNames = map (name: inputs.nixpkgs.lib.removeSuffix ".nix" name) (builtins.attrNames (builtins.readDir ./modules/nixos));
-      # An attribute set of all the NixOS modules in ./modules/nixos.
-      nixosModules = inputs.nixpkgs.lib.genAttrs nixosModuleNames (module: ./modules/nixos/${module}.nix) // headblockhead-nixos.nixosModules;
+      # An array of all the NixOS modules in ./modules.
+      nixosModuleNames = map (name: inputs.nixpkgs.lib.removeSuffix ".nix" name) (builtins.attrNames (builtins.readDir ./modules));
+      # An attribute set of all the NixOS modules in ./modules.
+      nixosModules = inputs.nixpkgs.lib.genAttrs nixosModuleNames (module: ./modules/${module}.nix);
 
       # A mini-module that configures nixpkgs to use our custom overlay and configuration.
       useCustomNixpkgsNixosModule = {
