@@ -7,7 +7,6 @@
     sssd # System Security Services Daemon
     krb5 # MIT Kerberos 5
     realmd # DBus service for configuring Kerberos and other
-    polkit
   ];
 
   security = {
@@ -79,4 +78,5 @@
     };
   };
   services.realmd.enable = true;
+  security.polkit.enable = true;
 }
