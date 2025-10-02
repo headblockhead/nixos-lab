@@ -1,17 +1,13 @@
-{ inputs, nixosModules, useCustomNixpkgsNixosModule, accountsForSystem, accountFromUsername, hostname, ... }:
+{ inputs, nixosModules, useCustomNixpkgsNixosModule, hostname, ... }:
 let
   system = "x86_64-linux";
-  canLogin = [ "headb" ];
-  hasHomeManager = true;
 in
 {
   nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
     inherit system;
 
     specialArgs = {
-      inherit inputs accountFromUsername system;
-      accounts = accountsForSystem canLogin;
-      usernames = canLogin;
+      inherit inputs system;
     };
 
     modules = with nixosModules; [
@@ -19,13 +15,11 @@ in
 
       {
         networking.hostName = hostname;
-        system.stateVersion = "22.05";
+        system.stateVersion = "25.05";
       }
 
       ./config.nix
       ./hardware.nix
-
-      inputs.agenix.nixosModules.default
 
       basicConfig
       bootloader
@@ -42,7 +36,7 @@ in
       ssh
       users
       zsh
-    ] ++ (if hasHomeManager then [ nixosModules.homeManager ] else [ ]);
+    ];
   };
-  inherit system canLogin hasHomeManager;
+  inherit system;
 }
