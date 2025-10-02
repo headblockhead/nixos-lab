@@ -66,6 +66,7 @@
         id_provider = ad
         fallback_homedir = /home/%u
         ad_domain = bridge.enterprise
+        ad_server = 192.168.42.195
         use_fully_qualified_names = false
         ldap_id_mapping = false
         auth_provider = ad
