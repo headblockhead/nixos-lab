@@ -15,7 +15,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, headblockhead-nixos, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       # Packages in nixpkgs that I want to override.
       nixpkgs-overlay = (
