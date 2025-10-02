@@ -78,17 +78,5 @@
       '';
     };
   };
-  systemd = {
-    services.realmd = {
-      description = "Realm Discovery Service";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-      serviceConfig = {
-        Type = "dbus";
-        BusName = "org.freedesktop.realmd";
-        ExecStart = "${pkgs.realmd}/libexec/realmd";
-        User = "root";
-      };
-    };
-  };
+  services.realmd.enable = true;
 }
