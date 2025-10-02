@@ -22,6 +22,7 @@ in
       ./hardware.nix
 
       basicConfig
+      fileSystems
       bootloader
       activeDirectory
     ];
