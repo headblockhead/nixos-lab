@@ -77,5 +77,6 @@
     };
   };
   services.realmd.enable = true;
+  services.packagekit.enable = true;
   security.polkit.enable = true;
 }
